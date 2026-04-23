@@ -7,7 +7,7 @@ This repository contains scripts to bootstrap and initialize [OWASP Dependency-T
 Run this command on your server to download and execute the bootstrap script:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/main/infra/deptrack/run.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/main/run.sh | bash
 ```
 
 ## What It Does
