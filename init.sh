@@ -40,8 +40,8 @@ export NPM_DB_PASSWORD=$(fetch "/deptrack/npm-db-password") || true
 if [[ -z "$POSTGRES_ROOT_PASSWORD" || -z "$DT_DB_PASSWORD" || -z "$NPM_DB_PASSWORD" ]]; then
   echo "[init] Error: One or more secrets are empty. Check SSM Parameter Store."
   echo "[init] Using Random Passwords (Not Recommended for Production):"
-  export POSTGRES_ROOT_PASSWORD="63421937fgwudfbshc"
-  export DT_DB_PASSWORD="h%^&^yhgugu"
+  export POSTGRES_PASSWORD="63421937fgwudfbshc"
+  export DT_DB_PASSWORD="jjkuhh7yhgugu"
   export NPM_DB_PASSWORD="gfhdf76879asdfhjee"
 fi
 
@@ -60,7 +60,7 @@ CREATE USER npm WITH PASSWORD '${NPM_DB_PASSWORD}';
 CREATE DATABASE npm OWNER npm;
 GRANT ALL PRIVILEGES ON DATABASE npm TO npm;
 EOF
-chmod 600 "${WORKDIR}/init-db.sql"
+chmod 644 "${WORKDIR}/init-db.sql"
 echo "[init] init-db.sql generated."
 
 echo "[init] Starting Docker Compose..."
