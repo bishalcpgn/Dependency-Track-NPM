@@ -3,7 +3,8 @@ services:
 
   # ── Dependency-Track API Server ─────────────────────────────────────────
   dt-apiserver:
-    image: dependencytrack/apiserver #pin the version 
+    image: dependencytrack/apiserver #pin the version
+    container_name: dt-apiserver
     platform: linux/arm64
     restart: unless-stopped
     environment:
@@ -29,6 +30,7 @@ services:
   # ── Dependency-Track Frontend ────────────────────────────────────────────
   dt-frontend:
     image: dependencytrack/frontend
+    container_name: dt-frontend
     platform: linux/arm64
     restart: unless-stopped
     environment:
@@ -43,6 +45,7 @@ services:
   # ── Shared PostgreSQL (both DT and NPM databases) ────────────────────────
   postgres:
     image: postgres:16-alpine
+    container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
@@ -63,6 +66,7 @@ services:
   # ── Nginx Proxy Manager ──────────────────────────────────────────────────
   npm:
     image: jc21/nginx-proxy-manager:latest
+    container_name: npm
     restart: unless-stopped
     ports:
       - "80:80"
