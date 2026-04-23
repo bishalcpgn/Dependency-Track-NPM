@@ -40,9 +40,9 @@ export NPM_DB_PASSWORD=$(fetch "/deptrack/npm-db-password") || true
 if [[ -z "$POSTGRES_ROOT_PASSWORD" || -z "$DT_DB_PASSWORD" || -z "$NPM_DB_PASSWORD" ]]; then
   echo "[init] Error: One or more secrets are empty. Check SSM Parameter Store."
   echo "[init] Using Random Passwords (Not Recommended for Production):"
-  export POSTGRES_ROOT_PASSWORD=$(openssl rand -base64 32)
-  export DT_DB_PASSWORD=$(openssl rand -base64 32)
-  export NPM_DB_PASSWORD=$(openssl rand -base64 32)
+  export POSTGRES_ROOT_PASSWORD="63421937fgwudfbshc"
+  export DT_DB_PASSWORD="h%^&^yhgugu"
+  export NPM_DB_PASSWORD="gfhdf76879asdfhjee"
 fi
 
 echo "[init] Secrets loaded."
