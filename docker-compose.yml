@@ -1,0 +1,94 @@
+
+services:
+
+  # ── Dependency-Track API Server ─────────────────────────────────────────
+  dt-apiserver:
+    image: dependencytrack/apiserver #pin the version 
+    platform: linux/arm64
+    restart: unless-stopped
+    environment:
+      ALPINE_DATABASE_MODE: external
+      ALPINE_DATABASE_URL: "jdbc:postgresql://postgres:5432/deptrack"
+      ALPINE_DATABASE_DRIVER: org.postgresql.Driver
+      ALPINE_DATABASE_USERNAME: deptrack
+      ALPINE_DATABASE_PASSWORD: "${DT_DB_PASSWORD}"
+
+      # ALPINE_WORKER_THREADS: 4
+      # ALPINE_WORKER_THREAD_MULTIPLIER: 4
+      # JAVA_OPTIONS: "-Xmx3g -Xms512m"
+    volumes:
+      - dt-data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - deptrack-net
+    expose:
+      - "8080"
+
+  # ── Dependency-Track Frontend ────────────────────────────────────────────
+  dt-frontend:
+    image: dependencytrack/frontend
+    platform: linux/arm64
+    restart: unless-stopped
+    environment:
+      API_BASE_URL: "http://35.164.152.158:80"
+    depends_on:
+      - dt-apiserver
+    networks:
+      - deptrack-net
+    expose:
+      - "8080"
+
+  # ── Shared PostgreSQL (both DT and NPM databases) ────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "${POSTGRES_ROOT_PASSWORD}"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    networks:
+      - deptrack-net
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Nginx Proxy Manager ──────────────────────────────────────────────────
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    environment:
+      DB_POSTGRES_HOST: postgres
+      DB_POSTGRES_PORT: "5432"
+      DB_POSTGRES_USER: npm
+      DB_POSTGRES_PASSWORD: "${NPM_DB_PASSWORD}"
+      DB_POSTGRES_NAME: npm
+    volumes:
+      - npm-data:/data
+      - npm-letsencrypt:/etc/letsencrypt
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - deptrack-net
+
+volumes:
+  dt-data:
+  postgres-data:
+  npm-data:
+  npm-letsencrypt:
+
+networks:
+  deptrack-net:
+    driver: bridge
