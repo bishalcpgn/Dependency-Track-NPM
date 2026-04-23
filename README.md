@@ -1,6 +1,6 @@
 # Dependency-Track Setup
 
-This repository contains scripts to bootstrap and initialize Dependency-Track with PostgreSQL using Docker Compose and Node Proxy Manager.
+This repository contains scripts to bootstrap and initialize [OWASP Dependency-Track](https://dependencytrack.org/) with PostgreSQL using Docker Compose and [Nginx Proxy Manager](https://nginxproxymanager.com/).
 
 ## Quick Start
 
