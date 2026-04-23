@@ -106,7 +106,7 @@ docker compose -f /opt/deptrack/docker-compose.yml logs -f dt-apiserver | less
 
 ## Notes
 
-- The script uses AWS SSM Parameter Store to fetch secrets. If secrets are not found, it will generate random passwords.
+- The script uses AWS SSM Parameter Store to fetch secrets. If secrets are not found, it will use default passwords.
 - All files are downloaded to `/opt/deptrack`
 - Ensure proper permissions and security for the working directory
 
