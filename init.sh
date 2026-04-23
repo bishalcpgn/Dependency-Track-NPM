@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-WORKDIR="/opt/deptrack"
+WORKDIR="/opt/dtrack"
 
 # ------ Validate working directory ------
 if [ ! -d "$WORKDIR" ]; then
@@ -64,5 +64,5 @@ chmod 644 "${WORKDIR}/init-db.sql"
 echo "[init] init-db.sql generated."
 
 echo "[init] Starting Docker Compose..."
-docker compose -f "${WORKDIR}/docker-compose.yml" up -d --remove-orphans --wait
+docker compose -p dtack -f "${WORKDIR}/docker-compose.yml" up -d --remove-orphans --wait
 docker image prune -f --filter "until=24h"
