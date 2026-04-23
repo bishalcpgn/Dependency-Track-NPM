@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-WORKDIR="/opt/deptrack"
+WORKDIR="/opt/dtrack"
 GITHUB_RAW="https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/main"
 
 echo "[bootstrap] Creating working directory..."
