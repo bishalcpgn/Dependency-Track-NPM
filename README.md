@@ -24,7 +24,7 @@ The bootstrap script:
 ## Prerequisites
 
 - `curl` - to download the bootstrap script
-- `docker` and `docker-compose` - to run the containers
+- `docker` and `docker compose` - to run the containers
 - AWS CLI configured with credentials (if using SSM Parameter Store for secrets)
 - Appropriate permissions to use `sudo` and create directories
 
