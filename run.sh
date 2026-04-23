@@ -5,7 +5,7 @@
 set -euo pipefail
 
 WORKDIR="/opt/deptrack"
-GITHUB_RAW="https://github.com/bishalcpgn/Dependency-Track-NPM/blob/main/run.sh"
+GITHUB_RAW="curl -fsSL https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/main/run.sh | bash"
 
 echo "[bootstrap] Creating working directory..."
 sudo mkdir -p "$WORKDIR"
