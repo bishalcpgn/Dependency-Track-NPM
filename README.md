@@ -1,6 +1,6 @@
 # Dependency-Track Setup
 
-This repository contains scripts to bootstrap and initialize Dependency-Track with PostgreSQL using Docker Compose.
+This repository contains scripts to bootstrap and initialize Dependency-Track with PostgreSQL using Docker Compose and Node Proxy Manager.
 
 ## Quick Start
 
