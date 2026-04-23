@@ -13,7 +13,7 @@ curl -fsSL https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/mai
 ## What It Does
 
 The bootstrap script:
-1. Creates the working directory at `/opt/deptrack`
+1. Creates the working directory at `/opt/dtrack`
 2. Downloads the necessary files (`init.sh` and `docker-compose.yml`)
 3. Sets appropriate permissions
 4. Runs the initialization script to:
