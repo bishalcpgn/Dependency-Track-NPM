@@ -7,7 +7,7 @@ GITHUB_RAW="https://raw.githubusercontent.com/bishalcpgn/Dependency-Track-NPM/ma
 echo "[bootstrap] Creating working directory..."
 sudo mkdir -p "$WORKDIR"
 sudo chown "$USER:$USER" "$WORKDIR"
-chmod 750 "$WORKDIR"
+chmod 755 "$WORKDIR"
 
 echo "[bootstrap] Downloading files from GitHub..."
 
