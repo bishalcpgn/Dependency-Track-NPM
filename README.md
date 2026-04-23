@@ -36,6 +36,6 @@ The bootstrap script:
 
 ## Notes
 
-- The script uses AWS SSM Parameter Store to fetch secrets. If secrets are not found, it will generate random passwords (not recommended for production).
+- The script uses AWS SSM Parameter Store to fetch secrets. If secrets are not found, it will generate random passwords.
 - All files are downloaded to `/opt/deptrack`
 - Ensure proper permissions and security for the working directory
