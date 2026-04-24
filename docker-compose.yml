@@ -34,7 +34,7 @@ services:
     platform: linux/arm64
     restart: unless-stopped
     environment:
-      API_BASE_URL: "http://35.164.152.158:80"
+      API_BASE_URL: "https://dtrack.bishalchapagain123.com.np"
     depends_on:
       - dt-apiserver
     networks:
